@@ -3,12 +3,17 @@ import aboutRoutes from './routes/aboutRoutes.ts';
 import productRoutes from './routes/productRoutes.ts';
 import userRoutes from './routes/userRoutes.ts';
 import { logger } from './middlewares/logger.ts';
+import mongoose from 'mongoose';
 
 process.loadEnvFile()
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
+const connectURI = process.env.DB_URI || ''
 
+mongoose.connect(connectURI)
+
+app.use(express.json())
 
 // Middleware to log HTTP requests
 app.use((req, res, next) => {
