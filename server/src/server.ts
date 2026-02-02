@@ -34,6 +34,8 @@ app.use('/api/products', productRoutes)
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World with TypeScript and Express!');
 });
+
+console.log('Calulu' + process.env.NODE_ENV)
 if (process.env.NODE_ENV !== "test") {
   await connectToDatabase();
   
