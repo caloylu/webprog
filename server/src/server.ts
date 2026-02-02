@@ -4,21 +4,19 @@ import productRoutes from './routes/productRoutes.ts';
 import userRoutes from './routes/userRoutes.ts';
 import { logger } from './middlewares/logger.ts';
 import mongoose from 'mongoose';
+import { connectToDatabase, disconnectFromDatabase } from './db.ts';
 
 process.loadEnvFile()
 
-const app: Application = express();
+export const app: Application = express();
 const port = process.env.PORT || 3000;
-const connectURI = process.env.DB_URI || ''
-
-mongoose.connect(connectURI)
 
 app.use(express.json())
 
 // Middleware to log HTTP requests
 app.use((req, res, next) => {
   logger.warn(`${req.method} ${req.url}`);
-  //console.log(manual console log: ${req.method} ${req.url})
+  //console.log(`manual console log: ${req.method} ${req.url}`)
   next();
 });
 
@@ -36,7 +34,16 @@ app.use('/api/products', productRoutes)
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World with TypeScript and Express!');
 });
-
-app.listen(port, () => {
-   console.log(`Server is running on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  await connectToDatabase();
+  
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+  
+  process.on("SIGINT", async () => {
+    await disconnectFromDatabase();
+    console.log("Server shutting down");
+    process.exit(0);
+  });
+}

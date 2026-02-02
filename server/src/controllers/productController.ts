@@ -56,7 +56,11 @@ export const updateProduct:RequestHandler = async (req, res) => {
 
   console.log('Updated product:', product);
 
-  res.send(product)
+      if (product === null)
+        res.status(404).send()
+    else
+        res.send(product)
+
 }
 
 export const deleteProduct:RequestHandler = async (req, res) => {
