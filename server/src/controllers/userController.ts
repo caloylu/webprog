@@ -1,34 +1,70 @@
-import type { RequestHandler } from "express";
+import type { RequestHandler } from "express"
+import User from "../models/user.ts";
 
-type UserType = {
-    id: number,
-    firstName: string,
-    lastName: string,
+export const getUsers: RequestHandler = async (req, res) => {
+    const users = await User.find()
+    res.send(users)
 }
-const users: UserType[] = [
-  { "id": 1, "firstName": "Jomin", "lastName": "Yu" },
-  { "id": 2, "firstName": "Esmy", "lastName": "Yu" },
-  { "id": 3, "firstName": "Friend Juan", "lastName": "Last Friend" },
-  { "id": 4, "firstName": "Another Friend", "lastName": "Poe" }
-];
 
-function shuffleArray(array: UserType[]) {
-    let currentIndex = array.length
-    while (0 !== currentIndex) {
-        const randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1
-        const temporaryValue = array[currentIndex]
-        if (temporaryValue && array[randomIndex]) {
-            array[currentIndex] = array[randomIndex]
-            array[randomIndex] = temporaryValue
+export const getUser: RequestHandler = async (req, res) => {
+    const id = req.params.id
+    const user = await User.findById(id)
+    res.send(user)
+}
+
+export const addUser: RequestHandler = async (req, res) => {
+    if (!req.body.user_name || !req.body.email || !req.body.password) {
+        res.status(422).send()
+        return
+    }
+
+    try {
+        const user = await User.create({
+            user_name: req.body.user_name,
+            email: req.body.email,
+            password: req.body.password,
+        })
+
+        res.status(201).send(user)
+
+    } catch (err: any) {
+        if (err.code === 11000) {
+            res.status(409).json({
+                error: true,
+                message: "Duplicate record found."
+            });
+        } else {
+            res.status(500).json({
+                error: true,
+                message: "Unexpected error."
+            });
         }
     }
-    return array
 }
 
-// Route to get all users
-export const getUsers:RequestHandler = (req, res) => {
-    shuffleArray(users);
-  // Use res.json() to send the array as a JSON response
-  res.status(200).json(users)
-};
+export const updateUser: RequestHandler = async (req, res) => {
+    const id = req.params.id
+
+    const user = await User.findByIdAndUpdate(id, {
+        user_name: req.body.user_name,
+        email: req.body.email,
+        password: req.body.password,
+    }, {
+        returnDocument: 'after'
+    })
+
+    if (user === null)
+        res.status(404).send()
+    else
+        res.send(user)
+}
+
+export const deleteUser: RequestHandler = async (req, res) => {
+    const id = req.params.id
+    const result = await User.findByIdAndDelete(id)
+
+    if (result === null)
+        res.status(404).send()
+    else
+        res.send(result)
+}

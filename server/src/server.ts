@@ -5,6 +5,8 @@ import userRoutes from './routes/userRoutes.ts';
 import { logger } from './middlewares/logger.ts';
 import mongoose from 'mongoose';
 import { connectToDatabase, disconnectFromDatabase } from './db.ts';
+import postRoutes from './routes/postRoutes.ts';
+
 
 process.loadEnvFile()
 
@@ -30,6 +32,9 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.use('/about', aboutRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
+app.use("/api/users", userRoutes);
+app.use('/api/post', postRoutes)
+
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World with TypeScript and Express!');
@@ -49,3 +54,9 @@ if (process.env.NODE_ENV !== "test") {
     process.exit(0);
   });
 }
+
+
+// Using our product API  as a pattern , Create CRUD API for users with the following fields
+// user_name, email and password.
+// Create unit tests for the CRUD.
+// Upadate our product test to include delete not found.
