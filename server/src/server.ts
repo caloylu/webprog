@@ -6,6 +6,7 @@ import { logger } from './middlewares/logger.ts';
 import mongoose from 'mongoose';
 import { connectToDatabase, disconnectFromDatabase } from './db.ts';
 import postRoutes from './routes/postRoutes.ts';
+import orderRoutes from './routes/orderRoutes.ts';
 
 
 process.loadEnvFile()
@@ -34,6 +35,8 @@ app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
 app.use("/api/users", userRoutes);
 app.use('/api/post', postRoutes)
+app.use('/api/orders', orderRoutes)
+
 
 
 app.get('/', (req: Request, res: Response) => {
@@ -55,8 +58,3 @@ if (process.env.NODE_ENV !== "test") {
   });
 }
 
-
-// Using our product API  as a pattern , Create CRUD API for users with the following fields
-// user_name, email and password.
-// Create unit tests for the CRUD.
-// Upadate our product test to include delete not found.
