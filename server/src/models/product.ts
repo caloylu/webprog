@@ -4,13 +4,22 @@ const productSchema = new Schema({
 
   name: {
     type: String,
-    required: true,
+    required:  [true, 'Name is required'],
     unique: true
   },
-  description: String,
-  price: Number,
-  qty: Number
-
+  description:{ 
+    type: String,
+    required:  [true, 'Description is required'],
+  },
+  price: {
+    type: Number,
+    required:  [true, 'Price is required'],
+  },
+  qty: {
+    type: Number,
+    required:  [true, 'Quantity is required'],
+    min: [1, 'Quantity must be at least 1']
+  },
 }, {
   timestamps: true
 });

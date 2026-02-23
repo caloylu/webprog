@@ -42,7 +42,7 @@ export const addOrder: RequestHandler = async (req, res) => {
     try {
         const user_id = req.body.user_id
         const user = await User.findById(req.body.user_id)
-        if (!user){
+        if (!user) {
             res.status(404).json({
                 error: true,
                 message: `User id ${user_id} not found.`
@@ -52,6 +52,7 @@ export const addOrder: RequestHandler = async (req, res) => {
         const items = req.body.items
         let total_amount = 0
         for (const item of items) {
+            const product_id = item.product_id
             const product = await Product.findById(item.product_id)
             if (!product) {
                 res.status(404).json({
@@ -60,13 +61,14 @@ export const addOrder: RequestHandler = async (req, res) => {
                 })
                 return
             }
-            item.product_name = product.name 
-            item.price = product.price 
+            item.product_name = product.name
+            item.price = product.price
             total_amount += item.qty * item.price
+            console.log(item)
         }
         const order = await Order.create({
             user_id: user_id,
-            username: user.user_name, 
+            username: user.user_name,
             items: items,
             total_amount: total_amount
         })
@@ -95,6 +97,25 @@ export const updateOrder: RequestHandler = async (req, res) => {
     const id = req.params.id
     console.log(id)
     console.log(req.body)
+
+    const items = req.body.items
+    let total_amount = 0
+    for (const item of items) {
+        const product_id = item.product_id
+        const product = await Product.findById(item.product_id)
+        if (!product) {
+            res.status(404).json({
+                error: true,
+                message: `Product id ${item.product_id} not found.`
+            })
+            return
+        }
+        item.product_name = product.name
+        item.price = product.price
+        total_amount += item.qty * item.price
+        console.log(item)
+    }
+
     const order = await Order.findByIdAndUpdate(id, {
         status: req.body.status,
         items: req.body.items,

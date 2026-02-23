@@ -7,7 +7,7 @@
     "start": "node --env-file=.env dist/server.js",
     "dev": "tsx --watch --env-file=.env src/server.ts",
     "build": "tsc",
-    "test": "node --env-file=.env-test --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand ./tests"
+    "test": "node --env-file=.env-test --experimental-vm-modules node_modules/jest/bin/jest.js --watch --runInBand ./tests"
   },
   "keywords": [],
   "author": "",

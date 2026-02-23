@@ -1,6 +1,7 @@
 import type { RequestHandler } from "express"
 import Post from "../models/post.ts";
 import User from "../models/user.ts";
+import user from "../models/user.ts";
 
 export const getPosts: RequestHandler = async (req, res) => {
     let params: any = {}
@@ -53,7 +54,7 @@ export const addPost: RequestHandler = async (req, res) => {
             content: req.body.content,
             published: req.body.published,
             user_id: user_id,
-            username: user.name,
+            username: user.user_name
         })
         console.log('Created post:', post);
 
