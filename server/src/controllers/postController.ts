@@ -1,7 +1,9 @@
 import type { RequestHandler } from "express"
 import Post from "../models/post.ts";
 import User from "../models/user.ts";
-import user from "../models/user.ts";
+import Comment from "../models/comment.ts";
+import type { SortType } from "./productController.ts";
+
 
 export const getPosts: RequestHandler = async (req, res) => {
     let params: any = {}
@@ -20,8 +22,24 @@ export const getPosts: RequestHandler = async (req, res) => {
             }]
         }
     }
+    const page = parseInt(req.query?.page as string) || 1
+    const limit = parseInt(req.query?.pagesize as string) || 10
+    const skip = (page - 1) * limit
+    const sort: SortType = {}
+    const sortField = req.query?.sort as string || 'name'
+    const sortDir = parseInt(req.query?.sortdir as string) || 1
+    sort[sortField] = sortDir
     const posts = await Post.find(params)
-    res.send(posts)
+        //@ts-ignore
+        .sort(sort)
+        .skip(skip).limit(limit)
+    const totalCount = await Post.find(params).countDocuments()
+    res.send({
+        posts: posts,
+        totalCount: totalCount,
+        currentPage: page
+    })
+
 }
 
 export const getPost: RequestHandler = async (req, res) => {
@@ -95,18 +113,12 @@ export const updatePost: RequestHandler = async (req, res) => {
     else
         res.send(post)
 }
-
+//Update the Post controller delete function so that all related comments are also deleted when the post is deleted. Paste the whole delete function.
 export const deletePost: RequestHandler = async (req, res) => {
     const id = req.params.id
     console.log(req.body)
+    await Comment.deleteMany({ postId: id })
     const result = await Post.findByIdAndDelete(id)
     console.log('Deleted post:', result);
     res.send(result)
 }
-
-
-
-
-
-
-

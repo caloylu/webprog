@@ -7,13 +7,21 @@ import mongoose from 'mongoose';
 import { connectToDatabase, disconnectFromDatabase } from './db.ts';
 import postRoutes from './routes/postRoutes.ts';
 import orderRoutes from './routes/orderRoutes.ts';
-
+import commentRoutes from "./routes/commentRoutes.ts";
+import cors from 'cors';
 
 process.loadEnvFile()
 
+const corsOptions = {
+  origin: ['http://localhost:4000', 'http://localhost:5173', 'https://www.deploymenthost.com'],
+  credentials: true, // Allow cookies to be sent
+};
+
 export const app: Application = express();
+const corsMW = cors(corsOptions)
 const port = process.env.PORT || 3000;
 
+app.use(corsMW)
 app.use(express.json())
 
 // Middleware to log HTTP requests
@@ -34,9 +42,9 @@ app.use('/about', aboutRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
 app.use("/api/users", userRoutes);
-app.use('/api/post', postRoutes)
+app.use('/api/posts', postRoutes)
 app.use('/api/orders', orderRoutes)
-
+app.use("/api/comments", commentRoutes);
 
 
 app.get('/', (req: Request, res: Response) => {
