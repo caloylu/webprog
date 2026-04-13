@@ -26,6 +26,7 @@ import Posts from './pages/Posts';
 import { darkTheme, theme } from './Themes';
 import ProductsAddEdit from './pages/ProductsAddEdit';
 import PostsAddEdit from './pages/PostAddEdit';
+import OrdersAddEdit from './pages/OrderAddEdit';
 
 const pages = ['About', 'Products', 'Orders', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -187,6 +188,7 @@ function App() {
         <Route path='products' element={<Products />} />
         <Route path='products/:id' element={<ProductsAddEdit />} />
         <Route path='orders' element={<Orders />} />
+        <Route path='orders/:id' element={<OrdersAddEdit />} />
         <Route path='blog' element={<Posts />} />
         <Route path='blog/:id' element={<PostsAddEdit />} />
       </Routes>
