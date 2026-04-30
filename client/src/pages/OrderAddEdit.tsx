@@ -6,17 +6,12 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import AddIcon from "@mui/icons-material/Add"
 import { createOrder, getOrder, updateOrder } from "../services/OrdersServices.ts"
 import { listProducts } from "../services/ProductsServices"
-import { listUsers } from "../services/UsersServices.ts"
+import { session } from "../auth/Session.ts"
 
 type ProductType = {
     _id: string
     name: string
     price: number
-}
-
-type UserType = {
-    _id: string
-    user_name: string
 }
 
 type OrderItemFormType = {
@@ -45,7 +40,6 @@ function OrdersAddEdit() {
     const location = useLocation()
     const isNew = id === "new"
 
-    const [users, setUsers] = useState<UserType[]>([])
     const [products, setProducts] = useState<ProductType[]>([])
     const [order, setOrder] = useState<OrderFormType>(() => {
         if (isNew) {
@@ -56,7 +50,7 @@ function OrdersAddEdit() {
         if (stateOrder) {
             return {
                 _id: stateOrder._id,
-                user_id: stateOrder.user_id ?? "",
+                user_id: session.id ?? "",
                 status: stateOrder.status ?? "New",
                 items: (stateOrder.items ?? []).map((item: any) => ({
                     product_id: item.product_id ?? "",
@@ -71,12 +65,6 @@ function OrdersAddEdit() {
     const [error, setError] = useState("")
 
     useEffect(() => {
-        listUsers().then((response: any) => {
-            setUsers(response.data ?? [])
-        }).catch((err: any) => {
-            console.log(err)
-        })
-
         listProducts({ page: 1, pagesize: 1000 }).then((response: any) => {
             setProducts(response.data?.products ?? [])
         }).catch((err: any) => {
@@ -88,7 +76,7 @@ function OrdersAddEdit() {
                 const loadedOrder = response.data
                 setOrder({
                     _id: loadedOrder._id,
-                    user_id: loadedOrder.user_id ?? "",
+                    user_id: session.id ?? "",
                     status: loadedOrder.status ?? "New",
                     items: (loadedOrder.items ?? []).map((item: any) => ({
                         product_id: item.product_id ?? "",
@@ -140,11 +128,6 @@ function OrdersAddEdit() {
     }
 
     const validate = () => {
-        if (!order.user_id) {
-            setError("User is required")
-            return false
-        }
-
         if (order.items.length === 0) {
             setError("At least one product is required")
             return false
@@ -171,7 +154,7 @@ function OrdersAddEdit() {
         }
 
         const payload = {
-            user_id: order.user_id,
+            user_id: session.id,
             status: order.status,
             items: order.items.map((item) => ({
                 product_id: item.product_id,
@@ -205,22 +188,6 @@ function OrdersAddEdit() {
 
     return <Box>
         <h2>{isNew ? "Add" : "Edit"} Order</h2>
-
-        <TextField
-            select
-            id="user"
-            fullWidth
-            label="User Id"
-            value={order.user_id}
-            onChange={(event) => {
-                setOrder({ ...order, user_id: event.target.value })
-            }}
-            sx={{ m: 1 }}
-        >
-            {users.map((user) => (
-                <MenuItem key={user._id} value={user._id}>{user._id}</MenuItem>
-            ))}
-        </TextField>
 
         <TextField
             select

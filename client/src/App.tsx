@@ -27,21 +27,52 @@ import { darkTheme, theme } from './Themes';
 import ProductsAddEdit from './pages/ProductsAddEdit';
 import PostsAddEdit from './pages/PostAddEdit';
 import OrdersAddEdit from './pages/OrderAddEdit';
+import { loadSession, logout, session } from './auth/Session';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
 
-const pages = ['About', 'Products', 'Orders', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+type PageRoute = {
+  page: string,
+  route: string,
+}
+
+const pages: PageRoute[] = [
+  { page: 'About', route: '/about' },
+  { page: 'Products', route: '/products' },
+  { page: 'Orders', route: '/orders' },
+  { page: 'Blog', route: '/blog' },
+]
+const settings: PageRoute[] = [
+  { page: 'Sign Up', route: '/signup' },
+  { page: 'Login', route: '/login' },
+]
+const settingsUser: PageRoute[] = [
+  { page: 'Change password', route: '/password' },
+  { page: 'Logout', route: '/logout' },
+]
 
 function App() {
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const navigate = useNavigate()
+
+  React.useEffect(() => {
+    loadSession()
+  }, [])
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
+  };
+
+  const handleNavMenu = (page: string) => {
+    //alert(page)
+    navigate(page)
+    setAnchorElNav(null);
   };
 
   const handleCloseNavMenu = (page: string) => {
@@ -51,8 +82,16 @@ function App() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const handleCloseUserMenu = (page?: string) => {
+    setAnchorElUser(null)
+    if (!page) {
+      return
+    }
+    if (page === '/logout') {
+      logout()
+      return
+    }
+    navigate(page)
   };
 
   const dark = false
@@ -114,8 +153,8 @@ function App() {
                 sx={{ display: { xs: 'block', md: 'none' } }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
-                    <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                  <MenuItem key={page.page} onClick={() => handleNavMenu(page.route)}>
+                    <Typography sx={{ textAlign: 'center' }}>{page.page}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -142,11 +181,11 @@ function App() {
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
-                  key={page}
-                  onClick={() => handleCloseNavMenu(page)}
+                  key={page.page}
+                  onClick={() => handleNavMenu(page.route)}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                  {page}
+                  {page.page}
                 </Button>
               ))}
             </Box>
@@ -170,11 +209,12 @@ function App() {
                   horizontal: 'right',
                 }}
                 open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
+                onClose={() => handleCloseUserMenu()}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
+                <Typography>{session.email}</Typography>
+                {(session.email ? settingsUser : settings).map((setting) => (
+                  <MenuItem key={setting.page} onClick={() => handleCloseUserMenu(setting.route)}>
+                    <Typography sx={{ textAlign: 'center' }}>{setting.page}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -184,13 +224,15 @@ function App() {
       </AppBar>
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='about' element={<About />} />
-        <Route path='products' element={<Products />} />
-        <Route path='products/:id' element={<ProductsAddEdit />} />
-        <Route path='orders' element={<Orders />} />
-        <Route path='orders/:id' element={<OrdersAddEdit />} />
-        <Route path='blog' element={<Posts />} />
-        <Route path='blog/:id' element={<PostsAddEdit />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/login' element={<SignIn />} />
+        <Route path='/products' element={<Products />} />
+        <Route path='/products/:id' element={<ProductsAddEdit />} />
+        <Route path='/orders' element={<Orders />} />
+        <Route path='/orders/:id' element={<OrdersAddEdit />} />
+        <Route path='/blog' element={<Posts />} />
+        <Route path='/blog/:id' element={<PostsAddEdit />} />
       </Routes>
     </ThemeProvider>
   );

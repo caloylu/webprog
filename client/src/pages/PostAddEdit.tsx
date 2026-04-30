@@ -4,6 +4,7 @@ import { Box, Button, TextField, Typography } from "@mui/material"
 import { useRef, useState } from "react"
 import { createPost, updatePost } from "../services/PostsServices"
 import { Editor } from "@tinymce/tinymce-react"
+import { session } from "../auth/Session"
 
 function PostsAddEdit() {
 
@@ -15,7 +16,7 @@ function PostsAddEdit() {
     const editorRef = useRef(null)
 
     const [post, setPost] = useState(isNew ? {
-        user_id: '',
+        user_id: session.id ?? '',
         title: '',
         content: ''
     } : location.state)
@@ -54,7 +55,7 @@ function PostsAddEdit() {
                             }
                         })
                     } else {
-                        setError(error.response.data.message)
+                        setError(error.response.data.message || error.response.data.error)
                     }
                 }
             })
@@ -81,7 +82,7 @@ function PostsAddEdit() {
                             }
                         })
                     } else {
-                        setError(error.response.data.message)
+                        setError(error.response.data.message || error.response.data.error)
                     }
                 }
             })
@@ -90,21 +91,6 @@ function PostsAddEdit() {
 
     return <Box>
         <h2>{isNew ? 'Add' : 'Edit'} Post</h2>
-        <TextField
-            id="userid"
-            fullWidth
-            label="User Id"
-            variant="outlined"
-            value={post.user_id}
-            onChange={event => {
-                setPost({
-                    ...post, user_id: event.target.value
-                })
-            }}
-            error={errors.user_id !== undefined}
-            helperText={errors.user_id?.message}
-            sx={{ m: 1 }}
-        />
         <TextField
             id="title"
             fullWidth
