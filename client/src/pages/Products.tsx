@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { Box, Button, Fab, Icon, Pagination, TextField, Typography } from "@mui/material";
+import { loadSession, session, subscribeSession } from "../auth/Session";
 import AddIcon from '@mui/icons-material/Add';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,7 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import { listProducts } from "../services/ProductsServices";
+import { listProducts, productImageUrl } from "../services/ProductsServices";
 
 export type ProductType = {
     _id: string,
@@ -19,6 +20,7 @@ export type ProductType = {
     description: string,
     price: number,
     qty: number,
+    imageUrl?: string | null,
 }
 
 function Products() {
@@ -30,11 +32,16 @@ function Products() {
     const pageSize = 5
     const [sort, setSort] = useState('name')
     const [dir, setDir] = useState(1)
+    const [isAdmin, setIsAdmin] = useState(false)
 
     const navigate = useNavigate()
 
     useEffect(() => {
+        loadSession()
+        setIsAdmin(session.userType === 'admin')
+        const unsubscribe = subscribeSession(() => setIsAdmin(session.userType === 'admin'))
         getProducts(filter, page, sort, dir)
+        return unsubscribe
     }, [])
 
     const getProducts = (filter: string, page: number, sort: string, dir: number) => {
@@ -60,7 +67,7 @@ function Products() {
                 <Pagination
                     count={pages}
                     page={page}
-                    onChange={(event, page) => {
+                    onChange={(_event, page) => {
                         setPage(page)
                         getProducts(filter, page, sort, dir)
                     }}
@@ -95,7 +102,11 @@ function Products() {
 
     return <Box>
         <h2>Products</h2>
-        <Button variant="outlined" onClick={() => navigate(`/products/new`)}>New</Button>
+        {isAdmin ? (
+            <Button variant="outlined" onClick={() => navigate(`/products/new`)}>New</Button>
+        ) : (
+            <Typography sx={{ mb: 1, color: 'text.secondary' }}>Only admins can add or update products.</Typography>
+        )}
         <TextField
             id="filter"
             label="Filter"
@@ -116,6 +127,7 @@ function Products() {
                 <TableHead>
                     <TableRow>
                         <TableCell>#</TableCell>
+                        <TableCell>Image</TableCell>
                         <TableCell><Sort column="name" header="Name" /></TableCell>
                         <TableCell>Description</TableCell>
                         <TableCell align="right"><Sort column="price" header="Price" /></TableCell>
@@ -130,6 +142,18 @@ function Products() {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell align="center">{index + 1}</TableCell>
+                            <TableCell sx={{ width: 88 }}>
+                                {productImageUrl(product.imageUrl) ? (
+                                    <Box
+                                        component="img"
+                                        src={productImageUrl(product.imageUrl)}
+                                        alt={product.name}
+                                        sx={{ width: 72, height: 72, objectFit: "contain", display: "block", borderRadius: 1, bgcolor: "action.hover" }}
+                                    />
+                                ) : (
+                                    <Typography variant="caption" color="text.secondary">—</Typography>
+                                )}
+                            </TableCell>
                             <TableCell component="th" scope="row">
                                 {product.name}
                             </TableCell>
@@ -137,7 +161,9 @@ function Products() {
                             <TableCell align="right">{product.price}</TableCell>
                             <TableCell align="right">{product.qty}</TableCell>
                             <TableCell>
-                                <Button onClick={() => navigate(`/products/${product._id}`, { state: product })}>Edit</Button>
+                                {isAdmin ? (
+                                    <Button onClick={() => navigate(`/products/${product._id}`, { state: product })}>Edit</Button>
+                                ) : null}
                             </TableCell>
                         </TableRow>
                     ))}

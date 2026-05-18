@@ -24,11 +24,30 @@ function SignUp() {
     const [otherError, setOtherError] = useState('')
 
     function save() {
-        // validate
         setError(emptyEntry)
+        setOtherError('')
+        const err = { ...emptyEntry }
+        if (entry.name.trim() === '') {
+            err.name = 'Name is required'
+        }
+        if (entry.email.trim() === '') {
+            err.email = 'Email is required'
+        }
+        if (entry.password === '') {
+            err.password = 'Password is required'
+        }
+        if (entry.retypePassword === '') {
+            err.retypePassword = 'Please confirm your password'
+        }
+        if (err.name || err.email || err.password || err.retypePassword) {
+            setError(err)
+            return
+        }
         if (entry.password !== entry.retypePassword) {
             setError({
-                ...error, password: 'Paswords did not match', retypePassword: 'Paswords did not match'
+                ...emptyEntry,
+                password: 'Passwords did not match',
+                retypePassword: 'Passwords did not match',
             })
             return
         }
@@ -37,17 +56,17 @@ function SignUp() {
             email: entry.email,
             password: entry.password.trim(),
         }).then(({ data, status }) => {
-            console.log(data)
             if (status === 201) {
                 navigate('/login')
             } else {
-                setOtherError(data.message)
+                setOtherError(data?.message || 'Registration failed.')
             }
-        }).catch((error) => {
-            console.log(error)
-            setOtherError(error.error_description || error.message)
-        }).finally(() => {
-            //setLoading(false)
+        }).catch((error: { response?: { data?: { message?: string; error?: string | boolean } } }) => {
+            const msg =
+                error.response?.data?.message ||
+                (typeof error.response?.data?.error === 'string' ? error.response.data.error : null) ||
+                'Registration failed. Please try again.'
+            setOtherError(msg)
         })
     }
 
@@ -60,6 +79,8 @@ function SignUp() {
                 label="Name"
                 variant="outlined"
                 value={entry.name}
+                error={error.name.length > 0}
+                helperText={error.name}
                 onChange={event => {
                     setEntry({
                         ...entry, name: event.target.value
@@ -79,6 +100,8 @@ function SignUp() {
                 label="Email"
                 variant="outlined"
                 value={entry.email}
+                error={error.email.length > 0}
+                helperText={error.email}
                 onChange={event => {
                     setEntry({
                         ...entry, email: event.target.value

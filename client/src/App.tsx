@@ -27,7 +27,7 @@ import { darkTheme, theme } from './Themes';
 import ProductsAddEdit from './pages/ProductsAddEdit';
 import PostsAddEdit from './pages/PostAddEdit';
 import OrdersAddEdit from './pages/OrderAddEdit';
-import { loadSession, logout, session } from './auth/Session';
+import { loadSession, logout, session, subscribeSession } from './auth/Session';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 
@@ -55,11 +55,20 @@ function App() {
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [userEmail, setUserEmail] = React.useState<string | null>(session.email);
+  const [userType, setUserType] = React.useState<string | null>(session.userType);
 
   const navigate = useNavigate()
 
   React.useEffect(() => {
     loadSession()
+    setUserEmail(session.email)
+    setUserType(session.userType)
+    const unsubscribe = subscribeSession(() => {
+      setUserEmail(session.email)
+      setUserType(session.userType)
+    })
+    return unsubscribe
   }, [])
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -211,8 +220,8 @@ function App() {
                 open={Boolean(anchorElUser)}
                 onClose={() => handleCloseUserMenu()}
               >
-                <Typography>{session.email}</Typography>
-                {(session.email ? settingsUser : settings).map((setting) => (
+                <Typography>{userEmail}{userType === 'admin' ? ' (Admin)' : ''}</Typography>
+                {(userEmail ? settingsUser : settings).map((setting) => (
                   <MenuItem key={setting.page} onClick={() => handleCloseUserMenu(setting.route)}>
                     <Typography sx={{ textAlign: 'center' }}>{setting.page}</Typography>
                   </MenuItem>

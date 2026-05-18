@@ -1,5 +1,8 @@
 import type { RequestHandler } from "express"
 import Comment from "../models/comment.ts"
+import User from "../models/user.ts"
+import Post from "../models/post.ts"
+import { getAuthUserId } from "../middlewares/requireAuth.ts"
 
 // GET all comments (optional filter by post_id)
 export const getComments: RequestHandler = async (req, res) => {
@@ -38,11 +41,36 @@ export const getCommentById: RequestHandler = async (req, res) => {
 
 export const addComment: RequestHandler = async (req, res) => {
     try {
+        const tokenUserId = getAuthUserId(req.get("authorization") ?? "")
+        if (!tokenUserId) {
+            return res.status(401).json({ message: "Unauthorized" })
+        }
+        if (!req.body.post_id) {
+            return res.status(422).json({ message: "post_id is required" })
+        }
+        if (req.body.content === undefined || String(req.body.content).trim() === "") {
+            return res.status(422).json({ message: "content is required" })
+        }
+        const user = await User.findById(tokenUserId)
+        if (!user) {
+            return res.status(404).json({
+                error: true,
+                message: `User id ${tokenUserId} not found.`
+            })
+        }
+        const post = await Post.findById(req.body.post_id)
+        if (!post) {
+            return res.status(404).json({
+                error: true,
+                message: "Post not found."
+            })
+        }
+
         const data = new Comment({
             post_id: req.body.post_id,
-            user_id: req.body.user_id,
-            user_name: req.body.user_name,
-            content: req.body.content,
+            user_id: user._id,
+            user_name: user.user_name,
+            content: String(req.body.content).trim(),
             comment_id: req.body.comment_id || null
         })
 
@@ -71,10 +99,30 @@ export const addComment: RequestHandler = async (req, res) => {
 export const updateComment: RequestHandler = async (req, res) => {
     try {
         const id = req.params.id
+        const tokenUserId = getAuthUserId(req.get("authorization") ?? "")
+        if (!tokenUserId) {
+            return res.status(401).json({ message: "Unauthorized" })
+        }
+
+        const existing = await Comment.findById(id)
+        if (!existing)
+            return res.status(404).json({ message: "Comment not found" })
+
+        if (existing.user_id.toString() !== tokenUserId) {
+            return res.status(403).json({
+                error: true,
+                message: "You can only edit your own comments."
+            })
+        }
+
+        const nextContent = String(req.body.content ?? "").trim()
+        if (!nextContent) {
+            return res.status(422).json({ message: "content is required" })
+        }
 
         const comment = await Comment.findByIdAndUpdate(
             id,
-            { content: req.body.content },
+            { content: nextContent },
             { returnDocument: "after" }
         )
 

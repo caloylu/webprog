@@ -17,16 +17,33 @@ export const getAuthUserId = (authorization: string): string | null => {
     return _id || null
 }
 
+function requestPathname(req: Request): string {
+    const raw = req.originalUrl || req.url || ""
+    const q = raw.indexOf("?")
+    return (q === -1 ? raw : raw.slice(0, q)) || req.path || ""
+}
+
 // requireAuth middleware is applied to all routes except /signin, /refresh and other public routes
 // to prevent unauthenticated users from accessing protected routes
-const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
-    if (req.path === "/api/auth/signin" ||
-        req.path === "/api/auth/refresh" ||
-        req.path === "/api/users" && req.method === 'POST' ||    // for register, TODO: no verification for now, will add later
-        req.path === "/" ||
-        req.path === "/error" ||
-        req.path.startsWith("/api/posts") && req.method === 'GET' ||
-        req.path.startsWith("/api/products") && req.method === 'GET'
+interface AuthenticatedRequest extends Request {
+    userId?: string
+    userType?: string
+}
+
+const requireAuth = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+    const pathname = requestPathname(req)
+    const method = (req.method || "GET").toUpperCase()
+
+    if (
+        (method === "POST" && pathname === "/api/auth/signin") ||
+        (method === "POST" && pathname === "/api/auth/refresh") ||
+        (method === "POST" && pathname === "/api/users") ||
+        pathname === "/" ||
+        pathname === "/error" ||
+        (method === "GET" && pathname.startsWith("/api/posts")) ||
+        (method === "GET" && pathname.startsWith("/api/products")) ||
+        (method === "GET" && pathname.startsWith("/api/comments")) ||
+        (method === "GET" && pathname.startsWith("/uploads/"))
     ) {
         return next();
     }
@@ -51,7 +68,7 @@ const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
             process.env.JWT_SECRET ?? ''
         );
         //@ts-ignore
-        const { _id } = decodedToken;
+        const { _id, type } = decodedToken;
         if (!_id) {
             logger.error({
                 error: "Invalid token",
@@ -66,6 +83,8 @@ const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
             console.log("User ID from request body:", req.body.user_id);
             throw "User can only edit his/her own posts"
         }*/
+        req.userId = _id
+        req.userType = type || 'user'
         logger.info({
             message: "user is authenticated: " + _id,
             ip: req.ip,

@@ -14,8 +14,13 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    unique: true
-  } 
+  },
+  type: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user',
+    required: true,
+  }
 });
 
 const User = model('User', userSchema)

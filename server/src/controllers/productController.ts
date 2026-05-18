@@ -1,5 +1,19 @@
 import type { RequestHandler } from "express"
+import fs from "fs/promises"
+import path from "path"
 import Product from "../models/product.ts";
+
+async function removeImageFile(imageUrl: string | null | undefined) {
+    if (!imageUrl || typeof imageUrl !== "string" || !imageUrl.startsWith("/uploads/")) {
+        return
+    }
+    const abs = path.join(process.cwd(), imageUrl.replace(/^\//, ""))
+    try {
+        await fs.unlink(abs)
+    } catch {
+        /* ignore missing file */
+    }
+}
 
 //type SortValues = 'name' | 'description' | 'price' | 'qty'
 export type SortType = {
@@ -130,6 +144,42 @@ export const deleteProduct: RequestHandler = async (req, res) => {
 
     if (product === null)
         res.status(404).send()
-    else
+    else {
+        await removeImageFile(product.imageUrl ?? undefined)
         res.send(product)
+    }
+}
+
+type MulterRequest = Parameters<RequestHandler>[0] & { file?: Express.Multer.File }
+
+export const uploadProductImage: RequestHandler = async (req, res) => {
+    const reqWithFile = req as MulterRequest
+    try {
+        if (!reqWithFile.file) {
+            return res.status(400).json({
+                error: true,
+                message: "Image file is required.",
+            })
+        }
+        const id = req.params.id
+        const product = await Product.findById(id)
+        if (!product) {
+            await fs.unlink(reqWithFile.file.path).catch(() => { })
+            return res.status(404).json({ error: true, message: "Product not found." })
+        }
+        await removeImageFile(product.imageUrl ?? undefined)
+        const publicPath = `/uploads/products/${reqWithFile.file.filename}`
+        const updated = await Product.findByIdAndUpdate(
+            id,
+            { imageUrl: publicPath },
+            { returnDocument: "after" }
+        )
+        res.send(updated)
+    } catch (err: any) {
+        if (reqWithFile.file?.path) {
+            await fs.unlink(reqWithFile.file.path).catch(() => { })
+        }
+        const message = err?.message ?? "Failed to upload image."
+        res.status(400).json({ error: true, message })
+    }
 }

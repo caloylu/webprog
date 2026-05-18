@@ -1,4 +1,5 @@
 import express, { type Application, type NextFunction, type Request, type Response } from "express";
+import path from "path";
 import cors from "cors";
 import aboutRoutes from "./routes/aboutRoutes.ts";
 import userRoutes from "./routes/userRoutes.ts";
@@ -7,6 +8,7 @@ import { logger } from "./middlewares/logger.ts";
 import { connectToDatabase, disconnectFromDatabase } from "./db.ts";
 import postRoutes from "./routes/postRoutes.ts";
 import orderRoutes from "./routes/orderRoutes.ts";
+import commentRoutes from "./routes/commentRoutes.ts";
 import requireAuth from "./middlewares/requireAuth.ts";
 import authRoutes from "./routes/authRoutes.ts";
 
@@ -22,6 +24,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(express.json())
+
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")))
 
 // Middleware to log HTTP requests
 app.use((req, res, next) => {
@@ -45,6 +49,7 @@ app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/posts', postRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/comments', commentRoutes)
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World with TypeScript and Express!!!");

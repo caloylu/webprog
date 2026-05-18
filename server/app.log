@@ -3543,3 +3543,336 @@
 2026-04-30T08:42:43.431Z [32minfo[39m: user is authenticated: 69f30e04b9a9aeae0755e713
 2026-04-30T08:42:43.480Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
 2026-04-30T08:42:43.562Z [32minfo[39m: GET /api/products?find=Product+Updated+1777538563335&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:39:43.261Z [32minfo[39m: GET /
+2026-05-11T03:39:43.389Z [32minfo[39m: GET /favicon.ico
+2026-05-11T03:39:43.390Z [31merror[39m: [object Object]
+2026-05-11T03:40:03.981Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T03:40:03.981Z [31merror[39m: [object Object]
+2026-05-11T03:40:04.980Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:40:06.098Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T03:40:06.098Z [31merror[39m: [object Object]
+2026-05-11T03:40:06.816Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:40:08.768Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:40:11.147Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T03:40:11.148Z [31merror[39m: [object Object]
+2026-05-11T03:40:12.266Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:40:33.052Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:46:27.301Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:46:28.278Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T03:46:28.279Z [31merror[39m: [object Object]
+2026-05-11T03:46:28.818Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:46:29.664Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T03:46:29.665Z [31merror[39m: [object Object]
+2026-05-11T03:46:30.318Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:46:52.473Z [32minfo[39m: POST /api/posts
+2026-05-11T03:46:52.473Z [31merror[39m: [object Object]
+2026-05-11T03:46:53.923Z [32minfo[39m: POST /api/posts
+2026-05-11T03:46:53.924Z [31merror[39m: [object Object]
+2026-05-11T03:46:55.378Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:50:28.548Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:50:30.206Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:50:31.735Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T03:50:31.736Z [31merror[39m: [object Object]
+2026-05-11T03:50:32.450Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T03:51:07.186Z [32minfo[39m: POST /api/products
+2026-05-11T03:51:07.190Z [31merror[39m: [object Object]
+2026-05-11T03:51:12.086Z [32minfo[39m: POST /api/products
+2026-05-11T03:51:12.087Z [31merror[39m: [object Object]
+2026-05-11T03:54:25.745Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T03:54:25.745Z [31merror[39m: [object Object]
+2026-05-11T03:54:27.343Z [32minfo[39m: GET /api/products?page=1&pagesize=1000
+2026-05-11T03:54:35.739Z [32minfo[39m: POST /api/orders
+2026-05-11T03:54:35.739Z [31merror[39m: [object Object]
+2026-05-11T03:54:44.938Z [32minfo[39m: POST /api/orders
+2026-05-11T03:54:44.938Z [31merror[39m: [object Object]
+2026-05-11T03:54:45.806Z [32minfo[39m: POST /api/orders
+2026-05-11T03:54:45.807Z [31merror[39m: [object Object]
+2026-05-11T03:54:53.224Z [32minfo[39m: POST /api/orders
+2026-05-11T03:54:53.225Z [31merror[39m: [object Object]
+2026-05-11T03:54:53.798Z [32minfo[39m: POST /api/orders
+2026-05-11T03:54:53.799Z [31merror[39m: [object Object]
+2026-05-11T03:54:54.089Z [32minfo[39m: POST /api/orders
+2026-05-11T03:54:54.107Z [31merror[39m: [object Object]
+2026-05-11T03:54:55.669Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T03:54:55.669Z [31merror[39m: [object Object]
+2026-05-11T04:14:36.612Z [32minfo[39m: GET /
+2026-05-11T04:14:36.630Z [32minfo[39m: GET /favicon.ico
+2026-05-11T04:14:36.630Z [31merror[39m: [object Object]
+2026-05-11T04:14:56.306Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:14:59.696Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:14:59.696Z [31merror[39m: [object Object]
+2026-05-11T04:15:02.303Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:15:14.835Z [32minfo[39m: POST /api/posts
+2026-05-11T04:15:14.836Z [31merror[39m: [object Object]
+2026-05-11T04:15:16.374Z [32minfo[39m: POST /api/posts
+2026-05-11T04:15:16.376Z [31merror[39m: [object Object]
+2026-05-11T04:15:17.062Z [32minfo[39m: POST /api/posts
+2026-05-11T04:15:17.063Z [31merror[39m: [object Object]
+2026-05-11T04:15:20.560Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:35:54.289Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:35:55.455Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:35:55.456Z [31merror[39m: [object Object]
+2026-05-11T04:35:56.060Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:35:57.371Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:35:58.266Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:35:58.266Z [31merror[39m: [object Object]
+2026-05-11T04:35:58.804Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:35:59.503Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:48:50.860Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:48:50.862Z [31merror[39m: [object Object]
+2026-05-11T04:48:52.123Z [32minfo[39m: POST /api/comments
+2026-05-11T04:48:52.124Z [31merror[39m: [object Object]
+2026-05-11T04:48:52.147Z [32minfo[39m: POST /api/comments
+2026-05-11T04:48:52.148Z [31merror[39m: [object Object]
+2026-05-11T04:48:52.157Z [32minfo[39m: POST /api/comments
+2026-05-11T04:48:52.157Z [31merror[39m: [object Object]
+2026-05-11T04:48:52.166Z [32minfo[39m: POST /api/comments
+2026-05-11T04:48:52.166Z [31merror[39m: [object Object]
+2026-05-11T04:48:52.176Z [32minfo[39m: POST /api/comments
+2026-05-11T04:48:52.176Z [31merror[39m: [object Object]
+2026-05-11T04:48:52.183Z [32minfo[39m: POST /api/comments
+2026-05-11T04:48:52.183Z [31merror[39m: [object Object]
+2026-05-11T04:48:52.193Z [32minfo[39m: POST /api/comments
+2026-05-11T04:48:52.193Z [31merror[39m: [object Object]
+2026-05-11T04:48:52.200Z [32minfo[39m: POST /api/comments
+2026-05-11T04:48:52.200Z [31merror[39m: [object Object]
+2026-05-11T04:48:52.204Z [32minfo[39m: POST /api/comments
+2026-05-11T04:48:52.204Z [31merror[39m: [object Object]
+2026-05-11T04:48:56.035Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:48:56.035Z [31merror[39m: [object Object]
+2026-05-11T04:50:13.488Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:50:13.811Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:50:34.248Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:50:34.722Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:50:34.906Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:51:01.800Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:51:02.287Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:51:02.457Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:51:02.623Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:51:02.807Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:51:35.771Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:51:41.551Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:51:42.452Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:51:42.453Z [31merror[39m: [object Object]
+2026-05-11T04:51:43.513Z [32minfo[39m: GET /api/products?page=1&pagesize=1000
+2026-05-11T04:51:44.161Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:51:47.257Z [32minfo[39m: GET /api/comments?post_id=6989773c157d626188539f8e
+2026-05-11T04:53:32.996Z [32minfo[39m: POST /api/users
+2026-05-11T04:55:40.177Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:56:22.652Z [32minfo[39m: POST /api/users
+2026-05-11T04:56:43.574Z [32minfo[39m: POST /api/users
+2026-05-11T04:57:00.338Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T04:57:00.539Z [32minfo[39m: Signin
+2026-05-11T04:57:02.451Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:57:03.503Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:57:03.505Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T04:57:04.644Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:57:05.586Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:57:05.587Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T04:57:06.129Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:57:06.777Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:57:11.016Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:57:12.606Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:57:12.607Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T04:57:29.511Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:57:29.938Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T04:57:29.939Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T04:57:30.544Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T04:57:34.230Z [32minfo[39m: GET /api/comments?post_id=6989773c157d626188539f8e
+2026-05-11T04:57:36.878Z [32minfo[39m: POST /api/comments
+2026-05-11T04:57:36.880Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T04:57:36.890Z [32minfo[39m: GET /api/comments?post_id=6989773c157d626188539f8e
+2026-05-11T04:57:39.053Z [32minfo[39m: POST /api/comments
+2026-05-11T04:57:39.053Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T04:57:39.059Z [32minfo[39m: GET /api/comments?post_id=6989773c157d626188539f8e
+2026-05-11T04:59:45.819Z [32minfo[39m: GET /api/products/6a0162411bc47357b37c4ee9
+2026-05-11T04:59:45.841Z [32minfo[39m: GET /api/products
+2026-05-11T04:59:45.868Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.868Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.876Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.877Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.882Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.882Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.889Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.889Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.895Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.895Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.900Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.901Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.910Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.910Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.918Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.918Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.925Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.926Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.931Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.931Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.936Z [32minfo[39m: POST /api/products
+2026-05-11T04:59:45.937Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.943Z [32minfo[39m: PUT /api/products/c3fe7eb8076e4de58d8d87c5
+2026-05-11T04:59:45.943Z [31merror[39m: [object Object]
+2026-05-11T04:59:45.947Z [32minfo[39m: DELETE /api/products/6976e898854bf6d42c512e48
+2026-05-11T04:59:45.947Z [31merror[39m: [object Object]
+2026-05-11T04:59:55.948Z [32minfo[39m: PUT /api/posts/6989773c157d626188539f8e
+2026-05-11T04:59:55.949Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T04:59:55.990Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:07:55.175Z [32minfo[39m: GET /api/products/6a01642bdd9df2b21ba204c6
+2026-05-11T05:07:55.197Z [32minfo[39m: GET /api/products
+2026-05-11T05:07:55.217Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.218Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba204da
+2026-05-11T05:07:55.227Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.228Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba204e1
+2026-05-11T05:07:55.233Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.234Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba204e8
+2026-05-11T05:07:55.241Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.242Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba204ef
+2026-05-11T05:07:55.248Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.249Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba204f6
+2026-05-11T05:07:55.255Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.256Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba204fd
+2026-05-11T05:07:55.275Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.275Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba20504
+2026-05-11T05:07:55.283Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.283Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba2050c
+2026-05-11T05:07:55.288Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.288Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba2050f
+2026-05-11T05:07:55.296Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.296Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba20517
+2026-05-11T05:07:55.301Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.302Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba2051e
+2026-05-11T05:07:55.306Z [32minfo[39m: PUT /api/products/6a01642bdd9df2b21ba2051f
+2026-05-11T05:07:55.306Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba20521
+2026-05-11T05:07:55.314Z [32minfo[39m: POST /api/products
+2026-05-11T05:07:55.315Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba20528
+2026-05-11T05:07:55.318Z [32minfo[39m: DELETE /api/products/6a01642bdd9df2b21ba20529
+2026-05-11T05:07:55.318Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba2052b
+2026-05-11T05:07:55.327Z [32minfo[39m: PUT /api/products/c3fe7eb8076e4de58d8d87c5
+2026-05-11T05:07:55.327Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba20532
+2026-05-11T05:07:55.333Z [32minfo[39m: DELETE /api/products/6976e898854bf6d42c512e48
+2026-05-11T05:07:55.333Z [32minfo[39m: user is authenticated: 6a01642bdd9df2b21ba20539
+2026-05-11T05:10:34.089Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T05:10:46.512Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T05:10:47.343Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T05:10:47.967Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T05:11:09.184Z [32minfo[39m: POST /api/auth/signin
+2026-05-11T05:11:09.384Z [32minfo[39m: Signin
+2026-05-11T05:11:11.611Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:11:13.561Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:11:14.072Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T05:11:14.073Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:11:14.975Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:11:18.205Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T05:11:18.206Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:11:19.596Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:11:23.342Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:11:29.142Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:11:35.445Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:11:38.270Z [32minfo[39m: GET /api/comments?post_id=69d344a5b1ee6c8246767bcf
+2026-05-11T05:11:42.349Z [32minfo[39m: POST /api/comments
+2026-05-11T05:11:42.349Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:11:42.361Z [32minfo[39m: GET /api/comments?post_id=69d344a5b1ee6c8246767bcf
+2026-05-11T05:11:44.684Z [32minfo[39m: POST /api/comments
+2026-05-11T05:11:44.685Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:11:44.691Z [32minfo[39m: GET /api/comments?post_id=69d344a5b1ee6c8246767bcf
+2026-05-11T05:11:59.734Z [32minfo[39m: POST /api/comments
+2026-05-11T05:11:59.734Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:11:59.742Z [32minfo[39m: GET /api/comments?post_id=69d344a5b1ee6c8246767bcf
+2026-05-11T05:12:09.885Z [32minfo[39m: PUT /api/comments/6a01651f51c0dc3850fa8997
+2026-05-11T05:12:09.886Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:12:09.895Z [32minfo[39m: GET /api/comments?post_id=69d344a5b1ee6c8246767bcf
+2026-05-11T05:12:42.497Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:12:43.369Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T05:12:43.370Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:12:44.274Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:12:45.386Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T05:12:45.387Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:12:46.574Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:12:47.551Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T05:12:47.552Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:12:48.872Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:12:52.942Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:12:53.736Z [32minfo[39m: GET /api/orders?find=
+2026-05-11T05:12:53.736Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:12:54.998Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-11T05:13:03.739Z [32minfo[39m: POST /api/products
+2026-05-11T05:13:03.740Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:14:00.829Z [32minfo[39m: POST /api/products
+2026-05-11T05:14:00.831Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:14:00.837Z [32minfo[39m: POST /api/products/6a01659851c0dc3850fa89c6/image
+2026-05-11T05:14:00.838Z [32minfo[39m: user is authenticated: 6a01618b0698364d891791e2
+2026-05-11T05:14:00.888Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T03:55:37.178Z [32minfo[39m: GET /
+2026-05-18T03:55:37.313Z [32minfo[39m: GET /favicon.ico
+2026-05-18T03:55:37.313Z [31merror[39m: [object Object]
+2026-05-18T04:20:09.403Z [32minfo[39m: POST /api/users
+2026-05-18T04:20:12.302Z [32minfo[39m: POST /api/users
+2026-05-18T04:20:12.493Z [32minfo[39m: POST /api/users
+2026-05-18T04:21:16.754Z [32minfo[39m: POST /api/auth/signin
+2026-05-18T04:21:28.047Z [32minfo[39m: POST /api/auth/signin
+2026-05-18T04:21:45.656Z [32minfo[39m: POST /api/auth/signin
+2026-05-18T04:21:45.881Z [32minfo[39m: Signin
+2026-05-18T04:21:53.592Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:21:53.595Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:21:54.276Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:21:55.674Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:21:56.858Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:21:56.859Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:21:57.280Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:21:57.621Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:21:57.621Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:21:58.026Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:21:58.386Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:21:58.387Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:21:58.759Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:21:59.211Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:02.708Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:03.103Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:22:03.103Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:22:03.481Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:03.920Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:22:03.921Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:22:04.408Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:04.852Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:22:04.853Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:22:05.575Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:06.053Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:22:06.054Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:22:06.538Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:06.920Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:22:06.921Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:22:07.324Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:12.422Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:22:12.425Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:22:12.825Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:20.942Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:22:20.943Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:22:21.361Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:23.542Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:22:23.988Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:22:23.989Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:25:58.252Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:25:58.677Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:25:58.681Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:25:59.327Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:26:01.337Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:26:01.338Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:26:01.928Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:26:05.496Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:26:06.077Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:26:06.079Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:26:06.777Z [32minfo[39m: GET /api/posts?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:26:07.105Z [32minfo[39m: GET /api/orders?find=
+2026-05-18T04:26:07.106Z [32minfo[39m: user is authenticated: 6a0a937cab9dcdf812c36205
+2026-05-18T04:26:07.676Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:36:18.704Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:36:21.701Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:36:46.699Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:37:29.669Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:37:31.668Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:37:53.672Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:37:54.671Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:38:16.688Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:38:47.677Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:38:57.676Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:40:47.684Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1
+2026-05-18T04:40:57.669Z [32minfo[39m: GET /api/products?find=&page=1&pagesize=5&sort=name&sortdir=1

@@ -1,18 +1,26 @@
 import supertest from "supertest";
 import { afterAll, beforeAll, beforeEach, describe, expect, it, jest } from "@jest/globals";
+import jwt from "jsonwebtoken";
+import { Types } from "mongoose";
 import { app } from "../src/server.ts";
 import {
   connectToDatabase,
   disconnectFromDatabase,
   clearCollections,
 } from "../src/db.ts";
-import { Types } from "mongoose";
 import Product from "../src/models/product.ts";
-import e from "express";
 
-// silence console.log and console.error
 jest.spyOn(console, "log").mockImplementation(() => {});
 jest.spyOn(console, "error").mockImplementation(() => {});
+
+function auth() {
+  const token = jwt.sign(
+    { _id: new Types.ObjectId().toString() },
+    process.env.JWT_SECRET ?? "",
+    { expiresIn: "1h" }
+  );
+  return { Authorization: `Bearer ${token}` };
+}
 
 describe("Product API PUT", () => {
   const productId = "c3fe7eb8076e4de58d8d87c5";
@@ -68,9 +76,9 @@ describe("Product API PUT", () => {
       .get(`/api/products`)
       .send()
     expect(result.status).toBe(200)
-    expect(result.body.length).toBe(2)
-    expect(result.body[0].name).toBe(products[0].name)
-    expect(result.body[1].name).toBe(products[1].name)
+    expect(result.body.products.length).toBe(2)
+    const names = result.body.products.map((p: { name: string }) => p.name).sort()
+    expect(names).toEqual([products[0].name, products[1].name].sort())
   })
 
   it("should validate a product for required all fields", async () => {
@@ -79,10 +87,11 @@ describe("Product API PUT", () => {
 
     const result = await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
-      expect(result.status).toBe(422)
-      expect(result.body._message).toBe("Product validation failed")
-      expect(result.body.message).toBe("Product validation failed: name: Name is required, description: Description is required, price: Price is required, qty: Quantity is required")
+    expect(result.status).toBe(422)
+    expect(result.body._message).toBe("Product validation failed")
+    expect(result.body.message).toBe("Product validation failed: name: Name is required, description: Description is required, price: Price is required, qty: Quantity is required")
   });
 
   it("should validate a product for required name", async () => {
@@ -94,10 +103,11 @@ describe("Product API PUT", () => {
 
     const result = await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
-      expect(result.status).toBe(422)
-      expect(result.body._message).toBe("Product validation failed")
-      expect(result.body.message).toBe("Product validation failed: name: Name is required")
+    expect(result.status).toBe(422)
+    expect(result.body._message).toBe("Product validation failed")
+    expect(result.body.message).toBe("Product validation failed: name: Name is required")
   });
 
   it("should validate a product for required description", async () => {
@@ -109,10 +119,11 @@ describe("Product API PUT", () => {
 
     const result = await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
-      expect(result.status).toBe(422)
-      expect(result.body._message).toBe("Product validation failed")
-      expect(result.body.message).toBe("Product validation failed: description: Description is required")
+    expect(result.status).toBe(422)
+    expect(result.body._message).toBe("Product validation failed")
+    expect(result.body.message).toBe("Product validation failed: description: Description is required")
   });
 
   it("should validate a product for required price", async () => {
@@ -124,10 +135,11 @@ describe("Product API PUT", () => {
 
     const result = await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
-      expect(result.status).toBe(422)
-      expect(result.body._message).toBe("Product validation failed")
-      expect(result.body.message).toBe("Product validation failed: price: Price is required")
+    expect(result.status).toBe(422)
+    expect(result.body._message).toBe("Product validation failed")
+    expect(result.body.message).toBe("Product validation failed: price: Price is required")
   });
 
   it("should validate a product for required quantity", async () => {
@@ -139,10 +151,11 @@ describe("Product API PUT", () => {
 
     const result = await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
-      expect(result.status).toBe(422)
-      expect(result.body._message).toBe("Product validation failed")
-      expect(result.body.message).toBe("Product validation failed: qty: Quantity is required")
+    expect(result.status).toBe(422)
+    expect(result.body._message).toBe("Product validation failed")
+    expect(result.body.message).toBe("Product validation failed: qty: Quantity is required")
 
   });
 
@@ -156,10 +169,11 @@ describe("Product API PUT", () => {
 
     const result = await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
-      expect(result.status).toBe(422)
-      expect(result.body._message).toBe("Product validation failed")
-      expect(result.body.message).toBe("Product validation failed: qty: Quantity must be at least 1")
+    expect(result.status).toBe(422)
+    expect(result.body._message).toBe("Product validation failed")
+    expect(result.body.message).toBe("Product validation failed: qty: Quantity must be at least 1")
   });
 
   it("should create a product", async () => {
@@ -172,6 +186,7 @@ describe("Product API PUT", () => {
 
     await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
       .expect(201);
   });
@@ -186,10 +201,12 @@ describe("Product API PUT", () => {
 
     await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
       .expect(201);
     await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
       .expect(409);
   });
@@ -203,6 +220,7 @@ describe("Product API PUT", () => {
 
     await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
       .expect(422);
   });
@@ -217,12 +235,14 @@ describe("Product API PUT", () => {
 
     let result = await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
     expect(result.status).toBe(201)
 
     product.name = 'New Product'
     result = await supertest(app)
       .put(`/api/products/${result.body._id}`)
+      .set(auth())
       .send(product)
     expect(result.status).toBe(200)
     expect(result.body.name).toBe('New Product')
@@ -238,12 +258,14 @@ describe("Product API PUT", () => {
 
     let result = await supertest(app)
       .post(`/api/products`)
+      .set(auth())
       .send(product)
     expect(result.status).toBe(201)
 
     product.name = 'New Product'
     result = await supertest(app)
       .delete(`/api/products/${result.body._id}`)
+      .set(auth())
       .send()
     expect(result.status).toBe(200)
     expect(result.body.name).toBe('Test Product')
@@ -259,6 +281,7 @@ describe("Product API PUT", () => {
 
         await supertest(app)
             .put(`/api/products/${productId}`)
+            .set(auth())
             .send(product)
             .expect(404);
     });
@@ -266,6 +289,7 @@ describe("Product API PUT", () => {
   it("should not delete a product not found", async () => {
     const result = await supertest(app)
       .delete(`/api/products/6976e898854bf6d42c512e48`)
+      .set(auth())
       .send()
     expect(result.status).toBe(404)
   });

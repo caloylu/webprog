@@ -16,10 +16,10 @@ function Login() {
     const [otherError, setOtherError] = useState('')
 
     function loginUser() {
-        // validate
         setError(emptyEntry)
+        setOtherError('')
         if (entry.email === '' || entry.password === '') {
-            const err = { ...error }
+            const err = { ...emptyEntry }
             if (entry.email === '') {
                 err.email = 'Email is required'
             }
@@ -38,9 +38,13 @@ function Login() {
             } else {
                 setOtherError(data.error || data.message)
             }
-        }).catch((error) => {
-            console.log(error)
-            setOtherError(error.message || error.error_description)
+        }).catch((error: { response?: { data?: { error?: string; message?: string } }; message?: string }) => {
+            const msg =
+                error.response?.data?.error ||
+                error.response?.data?.message ||
+                error.message ||
+                'Sign in failed. Please try again.'
+            setOtherError(msg)
         }).finally(() => {
             //setLoading(false)
         })

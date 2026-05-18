@@ -9,6 +9,9 @@ export const listPosts = (params: any) => {
     })
 };
 
+export const getPost = (id: string) => {
+    return httpClient.get(`/posts/${id}`)
+}
 
 export const createPost = (post: PostType) => {
     return httpClient.post('/posts', post, {

@@ -1,6 +1,7 @@
 import type { RequestHandler } from "express"
 import Post from "../models/post.ts";
 import User from "../models/user.ts";
+import { Types } from "mongoose";
 import Comment from "../models/comment.ts";
 import type { SortType } from "./productController.ts";
 
@@ -117,7 +118,7 @@ export const updatePost: RequestHandler = async (req, res) => {
 export const deletePost: RequestHandler = async (req, res) => {
     const id = req.params.id
     console.log(req.body)
-    await Comment.deleteMany({ postId: id })
+    await Comment.deleteMany({ post_id: new Types.ObjectId(String(id)) })
     const result = await Post.findByIdAndDelete(id)
     console.log('Deleted post:', result);
     res.send(result)

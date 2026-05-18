@@ -1,0 +1,11 @@
+Student Name: BARTOLAY
+StudentID: 33267
+Course: BSCS
+Year: 4
+Term: 2
+
+Subjects:
+Game Programming 2
+Programming Languages
+Thesis Writing 2
+Functional Chinese 2

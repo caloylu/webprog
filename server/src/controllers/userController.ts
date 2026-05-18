@@ -14,14 +14,18 @@ export const getUser: RequestHandler = async (req, res) => {
 }
 export const addUser: RequestHandler = async (req, res) => {
     if (!req.body.user_name || !req.body.email || !req.body.password) {
-        res.status(422).send()
+        res.status(422).json({
+            error: true,
+            message: "Username, email, and password are required.",
+        })
         return
     }
     const hash = await hashPassword(req.body.password)
     try {
+        const emailNorm = String(req.body.email).trim().toLowerCase()
         const user = await User.create({
-            user_name: req.body.user_name,
-            email: req.body.email,
+            user_name: String(req.body.user_name).trim(),
+            email: emailNorm,
             password: hash,
         })
 
